@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+<!-- xml标记可见 -> https://docs.spring.io/spring-framework/reference/core/appendix/xsd-schemas.html#xsd-schemas-util -->
+    <!-- 通过导入复用 dependency-injection-context.xml -->
+    <import resource="dependency-lookup-context.xml"/>
+
+    <!-- 硬编码，或者是手动配置 -->
+    <!-- 这里是按照xml定义的输出了 -->
+<!--    <bean id="userRepository" class="my.learn.thinking.in.spring.ioc.overview.repository.UserRepository">-->
+<!--        <property name="users">-->
+<!--            <util:list>-->
+<!--                <ref bean="user"/>-->
+<!--                <ref bean="superUser"/>-->
+<!--            </util:list>-->
+<!--        </property>-->
+<!--    </bean>-->
+    <!-- Auto-Wiring，自动绑定 -->
+    <!-- 这里就是按照 META-INF/dependency-lookup-context.xml 定义的顺序来输出了 -->
+    <bean id="userRepository" class="my.learn.thinking.in.spring.ioc.overview.repository.UserRepository" autowire="byType">
+<!--        <property name="users">-->
+<!--            <util:list>-->
+<!--                <ref bean="user"/>-->
+<!--                <ref bean="superUser"/>-->
+<!--            </util:list>-->
+<!--        </property>-->
+    </bean>
+</beans>

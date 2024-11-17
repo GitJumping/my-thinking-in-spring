@@ -7,6 +7,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.env.Environment;
 
 import java.util.Map;
 
@@ -27,6 +28,9 @@ public class DependencyInjectionDemo {
         // 启动 Spring 应用上下文
         // 导入实例，因为包含上下文的信息，一个是injection的上下文，一个是lookup的上下文
         BeanFactory beanFactory = new ClassPathXmlApplicationContext("classpath:META-INF/dependency-injection-context.xml");
+        /*
+        依赖来源1:自定义地bean
+         */
         UserRepository userRepository = beanFactory.getBean("userRepository", UserRepository.class);
         System.out.println(userRepository.getUsers());
 
@@ -47,7 +51,16 @@ public class DependencyInjectionDemo {
         System.out.println(userFactory.getObject() == beanFactory);
 
         //依赖查找（错误）
+        /*
+        依赖来源2:内建依赖
+         */
 //        System.out.println(beanFactory.getBean(BeanFactory.class));
+
+        /*
+        依赖来源3:容器内建的bean
+         */
+        Environment environment = beanFactory.getBean(Environment.class);
+        System.out.println("获取 Environment 类型地 Bean： "+environment);
     }
 
 }

@@ -35,6 +35,10 @@ public class DependencyLookUpDemo {
         lookupInLazy(beanFactory);
     }
 
+    /**
+     * DefaultListableBeanFactory$DependencyObjectProvider 即使 ObjectProvider 实现，而 ObjectProvider 则是 ObjectFactory 子接口。
+     * @param beanFactory
+     */
     private static void lookupByAnnotationType(BeanFactory beanFactory) {
         if (beanFactory instanceof ListableBeanFactory) {
             ListableBeanFactory listableBeanFactory = (ListableBeanFactory) beanFactory;
@@ -82,6 +86,8 @@ public class DependencyLookUpDemo {
      * ObjectFactoryCreatingFactoryBean 与ObjectFactory 没有父子关系，不过 ObjectFactoryCreatingFactoryBean  属于 FactoryBean 来创建 ObjectFactory，当依赖查找或依赖注入时，将返回 ObjectFactory 实例
      *
      * 所谓的延迟是指在注入时，不会马上注入目标对象，而是先弄一个句柄，当需要时，再次获取。
+     *
+     * 依赖注入的第一步是通过依赖查找去符合条件的Bean，延迟依赖查找相当于依赖注入的对象是一个代理对像，当调用该对象getObject 方法是才实际依赖查找
      *
      * @param beanFactory
      */

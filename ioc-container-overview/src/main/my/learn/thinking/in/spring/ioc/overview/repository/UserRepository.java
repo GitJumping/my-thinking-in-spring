@@ -17,9 +17,13 @@ public class UserRepository {
     /**
      * 测试获取内部对象
      * 内建非bean对象，（依赖）
+     * ->内建对象就是Spring IoC 内部创建的对象，可以用于依赖注入
      */
     private BeanFactory beanFactory;
 
+    /**
+     * ObjectFactoryCreatingFactoryBean 是 ObjectFactory 和 FactoryBean 组合形式，通过 FactoryBean 注册 ObjectFactory
+     */
 //    private ObjectFactory<User> userObjectFactory;
     //就改了一下泛型对象
     private ObjectFactory<ApplicationContext> objectFactory;

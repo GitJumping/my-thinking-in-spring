@@ -12,6 +12,14 @@ import java.util.Map;
 
 /**
  * 依赖注入实例
+ *
+ * 依赖的对象是否为主动获取，是的话，就是依赖查找，否则就是依赖注入，由框架绑定完成
+ *
+ * ObjectFactory 通常是针对单类 Bean 做延迟获取的，BeanFactory 则是全局 Bean 管理的容器
+ *
+ * ObjectFactory<ApplicationContext> 和 ObjectFactory<BeanFactory>  分别获取的 ApplicationContext 和 ApplicationContext 所关联的 BeanFactory，所以不会相等。
+ *
+ * @Autowired 在 Bean 生命周期时发生注入，是通用的，与XML 或注解的注册 Spring Bean 的方式无关
  */
 public class DependencyInjectionDemo {
     public static void main(String[] args) {

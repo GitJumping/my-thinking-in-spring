@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- xml标记可见 -> https://docs.spring.io/spring-framework/reference/core/beans/basics.html -->
+    <bean id="user" class="my.learn.thinking.in.spring.ioc.overview.domain.User">
+        <property name="id" value="1"/>
+        <property name="name" value="noah"/>
+    </bean>
+<!-- 通常配置文件最好放在元数据目录，即 META-INF -->
+    <bean id="superUser" class="my.learn.thinking.in.spring.ioc.overview.domain.Super" parent="user" primary="true">
+        <property name="address" value="Shanghai city"/>
+    </bean>
+
+    <bean id="objectFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+        <property name="targetBeanName" value="user"/>
+    </bean>
+</beans>

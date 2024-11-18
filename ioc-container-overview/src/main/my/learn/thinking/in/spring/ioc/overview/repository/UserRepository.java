@@ -18,6 +18,8 @@ public class UserRepository {
      * 测试获取内部对象
      * 内建非bean对象，（依赖）
      * ->内建对象就是Spring IoC 内部创建的对象，可以用于依赖注入
+     *
+     * 内建的 Bean 是普通的 Spring Bean，包括 BeanDefinitions 和 Singleton Objects，而内建依赖则是通过 AutowireCapableBeanFactory 中的 resolveDependency 方法来注册，这并非是一个 Spring Bean，无法通过依赖查找获取
      */
     private BeanFactory beanFactory;
 

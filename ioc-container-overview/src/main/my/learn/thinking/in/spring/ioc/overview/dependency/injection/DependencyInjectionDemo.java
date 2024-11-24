@@ -107,6 +107,11 @@ public class DependencyInjectionDemo {
      *
      * BeanFactory和ApplicationContext是同一种类，具体实现上，ApplicationContext组合了一个BeanFactory的实现
      * 这就是为什么ApplicationContext不等于BeanFactory，它们是复用了同一个接口，但是是两个对象
+     *
+     * ApplicationContext是BeanFactory的子接口，说明ApplicationContext is BeanFactory。并且ApplicationContext 是BeanFactory的包装类，也就是内部组合了BeanFactory的实现-DefaultListableBeanFactory。为什么包装了DefaultListableBeanFactory，因为它需要简化且丰富功能来为企业开发提供更高的便捷性，也就是说ApplicationContext 是DefaultListableBeanFactory的超集。
+     * 至于为什么UserRepository注入的BeanFactory  不等于ClassPathXmlApplicationContext得到的BeanFactory ，是因为AbstractApplicationContext#prepareBeanFactory中 指明了 beanFactory.registerResolvableDependency(BeanFactory.class, beanFactory); 也就是说当byType是BeanFactory.class的时候，获得是的ApplicationContext中的DefaultListableBeanFactory对象。
+     * 那真正的IOC的底层实现就是BeanFactory的实现类，因为ApplicationContext是委托DefaultListableBeanFactory来操作getBean等方法的。
+     *
      * @param userRepository
      * @param beanFactory
      */

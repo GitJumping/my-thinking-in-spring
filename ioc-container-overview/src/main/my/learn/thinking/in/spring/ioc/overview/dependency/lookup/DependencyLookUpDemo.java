@@ -20,6 +20,8 @@ import java.util.Map;
  * FactoryBean默认创建的bean不是也是单例吗，没太懂文中说的，这就是BeanFactory和FactoryBean的重大区别是指啥
  * -
  * FactoryBean 从5.0开始默认值是单例，它有一个方法 isSingleton 来判断是否为单例对象。BeanFactory 是Bean 容器，FactoryBean 是工厂式的Bean 生成器
+ *
+ *
  */
 public class DependencyLookUpDemo {
     public static void main(String[] args) {

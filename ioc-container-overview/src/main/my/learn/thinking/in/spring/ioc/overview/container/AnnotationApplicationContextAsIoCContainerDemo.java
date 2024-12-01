@@ -14,7 +14,6 @@ import java.util.Map;
  * 注解能力的 ApplicationContext 作为IoC容器示例
  */
 public class AnnotationApplicationContextAsIoCContainerDemo {
-    // TODO
     /**
      * 即使不用 ApplicationContext 也能加载到 Bean文件
      * 但就没有事件，资源管理的特性

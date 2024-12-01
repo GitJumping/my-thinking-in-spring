@@ -5,6 +5,8 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 
 import java.util.Map;
 
@@ -21,15 +23,21 @@ public class AnnotationApplicationContextAsIoCContainerDemo {
     public static void main(String[] args) {
         // 创建 BeanFactory 容器
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
-        // 加载配置
-        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
-        // XML 配置文件ClassPath 路径
-        String locationPath = "classpath:META-INF/dependency-lookup-context.xml";
-        // 加载配置
-        int beanDefinitionsCount = reader.loadBeanDefinitions(locationPath);
-        System.out.println("Bena 定义加载的数量："+beanDefinitionsCount);
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+        // 将当前类 AnnotationApplicationContextAsIoCContainerDemo 作为配置类 Configuration class
+        applicationContext.register(AnnotationApplicationContextAsIoCContainerDemo.class);
+        // 启动应用上下文
+        applicationContext.refresh();
         // 依赖查找集合对象
-        lookupCollectionByType(beanFactory);
+        lookupCollectionByType(applicationContext);
+    }
+
+    @Bean
+    public User user(){
+        User user = new User();
+        user.setId(1L);
+        user.setName("Noah");
+        return user;
     }
 
     private static void lookupCollectionByType(BeanFactory beanFactory) {

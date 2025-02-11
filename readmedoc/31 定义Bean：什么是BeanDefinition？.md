@@ -1,0 +1,7 @@
+springIOC容器为什么一定要把xml(或者注解类)解析成BeanDefinition，而不是在解析的时候直接实例化，为啥要多加这么一层？
+-
+作者回复: BeanDefinition 是 Bean 的配置，里面有不少的元信息，包括延迟加载、scope、以及属性配置等，这样的话，可以有更多扩展空间。
+
+AnnotationConfigApplicationContext继承了GenicApplicationContext,它的refreshBeanFactory()只是在无参构造函数中new DefaultListableBeanFactory(),并没有注册bean定义相关的步骤，是不是此类ApplicationContext不需要注册bean定义
+-
+作者回复: AnnotationConfigApplicationContext 不需要加载外部配置化的 BeanDefinition，比如 ClassPathXmlApplicationContext 继承了 AbstractRefreshableConfigApplicationContext 在 refreshBeanFactory() 方法会调用 loadBeanDefinitions() 方法，在 AbstractXmlApplicationContext 的实现作用下，加载 XML 配置元素。

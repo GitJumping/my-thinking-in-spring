@@ -1,4 +1,6 @@
 .idea
 *.iml
 target
+archetype-resources
+maven
 ioc-container-overview/src/main/my/learn/thinking/in/spring/ioc/overview/SocketServer.java
